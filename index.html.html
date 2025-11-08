@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Happy Birthday Heer 💖</title>
+
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300;400;600&display=swap');
+
+    body {
+      margin: 0;
+      height: 100vh;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      color: white;
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(-45deg, #ffb6c1, #ff69b4, #ffc0cb, #ff1493);
+      background-size: 400% 400%;
+      animation: gradientShift 10s ease infinite;
+    }
+
+    @keyframes gradientShift {
+      0% {background-position: 0% 50%;}
+      50% {background-position: 100% 50%;}
+      100% {background-position: 0% 50%;}
+    }
+
+    h1 {
+      font-family: 'Great Vibes', cursive;
+      font-size: 3.2rem;
+      letter-spacing: 1px;
+      animation: fadeIn 3s ease forwards;
+    }
+
+    #message {
+      max-width: 600px;
+      font-size: 1.2rem;
+      line-height: 1.6;
+      margin-top: 20px;
+      opacity: 0;
+      animation: fadeInText 5s ease forwards 3s;
+    }
+
+    button {
+      margin-top: 30px;
+      padding: 12px 28px;
+      font-size: 1.1rem;
+      background-color: white;
+      color: #ff1493;
+      border: none;
+      border-radius: 25px;
+      cursor: pointer;
+      box-shadow: 0 0 15px rgba(255, 255, 255, 0.6);
+      transition: all 0.3s ease;
+    }
+
+    button:hover {
+      transform: scale(1.1);
+      box-shadow: 0 0 25px rgba(255, 255, 255, 0.9);
+    }
+
+    @keyframes fadeIn {
+      from {opacity: 0; transform: translateY(20px);}
+      to {opacity: 1; transform: translateY(0);}
+    }
+
+    @keyframes fadeInText {
+      from {opacity: 0;}
+      to {opacity: 1;}
+    }
+
+    /* Hearts animation */
+    .heart {
+      position: absolute;
+      color: #fff;
+      font-size: 20px;
+      animation: floatUp 6s ease-in infinite;
+      opacity: 0.8;
+    }
+
+    @keyframes floatUp {
+      0% {transform: translateY(0) scale(1); opacity: 0.8;}
+      100% {transform: translateY(-100vh) scale(1.5); opacity: 0;}
+    }
+
+    /* Sparkles */
+    .sparkle {
+      position: absolute;
+      background: white;
+      border-radius: 50%;
+      animation: twinkle 2s infinite ease-in-out;
+      opacity: 0.8;
+    }
+
+    @keyframes twinkle {
+      0%, 100% {opacity: 0.2; transform: scale(1);}
+      50% {opacity: 1; transform: scale(1.4);}
+    }
+  </style>
+</head>
+<body>
+  <h1 id="title"></h1>
+
+  <p id="message">
+    You know, I was trying to come up with the perfect birthday message, but honestly,
+    all I could think about was how beautiful you look. Getting to spend time with you
+    is the only wish I have, and I’m thoroughly enjoying our transition from
+    'just friends' to 'who knows what’s going to happen next.'  
+    <br><br>
+    My gift to you today is the promise that I’ll spend the next year being even more charming.
+    You're welcome. Now go have a birthday that’s as fun, smart, and gorgeous as you are.
+  </p>
+
+  <button onclick="startExperience()">💖 Play our song</button>
+
+  <audio id="bgAudio" loop>
+    <source src="dil.mp3" type="audio/mpeg" />
+  </audio>
+
+  <script>
+    const audio = document.getElementById('bgAudio');
+    const title = document.getElementById('title');
+
+    function typeWriter(text, element, delay = 150) {
+      let i = 0;
+      function typing() {
+        if (i < text.length) {
+          element.innerHTML += text.charAt(i);
+          i++;
+          setTimeout(typing, delay);
+        }
+      }
+      typing();
+    }
+
+    function startExperience() {
+      audio.play();
+      createHearts();
+      createSparkles();
+      if (!title.textContent) {
+        typeWriter("🎂 Happy Birthday, Heer 💖", title);
+      }
+    }
+
+    // Floating hearts
+    function createHearts() {
+      setInterval(() => {
+        const heart = document.createElement('div');
+        heart.classList.add('heart');
+        heart.textContent = '💖';
+        heart.style.left = Math.random() * 100 + 'vw';
+        heart.style.fontSize = Math.random() * 20 + 20 + 'px';
+        heart.style.animationDuration = Math.random() * 3 + 4 + 's';
+        document.body.appendChild(heart);
+        setTimeout(() => heart.remove(), 6000);
+      }, 600);
+    }
+
+    // Sparkles
+    function createSparkles() {
+      setInterval(() => {
+        const sparkle = document.createElement('div');
+        sparkle.classList.add('sparkle');
+        sparkle.style.left = Math.random() * 100 + 'vw';
+        sparkle.style.top = Math.random() * 100 + 'vh';
+        sparkle.style.width = sparkle.style.height = Math.random() * 5 + 3 + 'px';
+        sparkle.style.animationDuration = Math.random() * 2 + 1 + 's';
+        document.body.appendChild(sparkle);
+        setTimeout(() => sparkle.remove(), 2000);
+      }, 200);
+    }
+  </script>
+</body>
+</html>
